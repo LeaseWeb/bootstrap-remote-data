@@ -101,13 +101,14 @@ var RemoteTabs = function() {
                     tabContainer.unmask();
                 }
                 if (data) {
+                    tabContainer.html(data);
+
                     if(typeof window[callbackFn] == 'function') {
                         window[callbackFn].call(null, data, trigger, tabContainer, customData);
                     }
                     if(!trigger.hasClass("loaded")) {
                         trigger.addClass("loaded");
                     }
-                    tabContainer.html(data);
                 }
             },
             fail: function(data) {
@@ -119,11 +120,9 @@ var RemoteTabs = function() {
     }
   };
     var hasLoadingMask = (jQuery().mask ? true : false),
-    bootstrapVersion2 = (jQuery().typeahead ? true : false);
 
     // hook the event based on the version of bootstrap
-    var event = (bootstrapVersion2 ? 'show' : 'show.bs.tab');
-    obj.load(event, hasLoadingMask);
+    obj.load(shown.bs.tab, hasLoadingMask);
 
     return obj;
 };
