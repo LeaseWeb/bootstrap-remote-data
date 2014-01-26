@@ -119,10 +119,10 @@ var RemoteTabs = function() {
         });
     }
   };
-    var hasLoadingMask = (jQuery().mask ? true : false),
+    var hasLoadingMask = (jQuery().mask ? true : false);
 
     // hook the event based on the version of bootstrap
-    obj.load(shown.bs.tab, hasLoadingMask);
+    obj.load('shown.bs.tab', hasLoadingMask);
 
     return obj;
 };
