@@ -29,6 +29,7 @@ var RemoteTabs = function() {
           $('[data-toggle=tab]').each(function(k, tab) {
               var tabObj = $(tab),
                   tabDiv,
+                  tabParent,
                   tabData,
                   tabCallback,
                   url,
@@ -38,6 +39,7 @@ var RemoteTabs = function() {
               if(tabObj.is('[data-tab-url]')) {
                   url = tabObj.attr('data-tab-url');
                   tabDiv = $(tabObj.attr('href'));
+                  tabParent = tabObj.attr('data-parent');
                   tabData = tabObj.attr('data-tab-json') || [];
                   tabCallback = tabObj.attr('data-tab-callback') || null;
                   simulateDelay = tabObj.attr('data-tab-delay') || null;
@@ -89,7 +91,7 @@ var RemoteTabs = function() {
        * @param tabContainer
        * @private
        */
-    _executeRemoteCall: function(url, customData, callbackFn, trigger, tabContainer) {
+    _executeRemoteCall: function(url, customData, callbackFn, trigger, tabContainer, tabParent) {
         var me = this;
 
 
@@ -101,6 +103,10 @@ var RemoteTabs = function() {
                     tabContainer.unmask();
                 }
                 if (data) {
+                    if (tabParent) {
+                      $(tabParent + ' > .remoteData').empty();
+                    }                  
+                  
                     tabContainer.html(data);
 
                     if(typeof window[callbackFn] == 'function') {
