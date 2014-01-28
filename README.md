@@ -15,7 +15,7 @@ Simple boostrap plugin to allow tabs to fetch their data from a remote source
 Requirements
 ============
 
-* Bootstrap 3.x (BS 2.x removed)
+* Bootstrap 2.3 or higher
 
 Installation
 ============
