@@ -10,6 +10,13 @@ var $ = jQuery;
  * @returns {{hasLoadingMask: boolean, load: Function, _executeRemoteCall: Function}}
  * @constructor
  */
+ 
+var hasLoadingMask = (jQuery().mask ? true : false),
+    bootstrapVersion2 = (jQuery().typeahead ? true : false);
+
+// hook the event based on the version of bootstrap
+var showEvent = (bootstrapVersion2 ? 'show' : 'shown.bs.tab');
+
 var RemoteTabs = function() {
   var obj = {
       hasLoadingMask: false,
@@ -103,6 +110,9 @@ var RemoteTabs = function() {
                     tabContainer.unmask();
                 }
                 if (data) {
+                  
+                    // empty previous remote tab data to ensure that call backs bind to current tab only
+                    // ensure that the tab panels have remoteData as a class on them to ignore non remote data tabs
                     if (tabParent) {
                       $(tabParent + ' > .remoteData').empty();
                     }                  
@@ -125,10 +135,8 @@ var RemoteTabs = function() {
         });
     }
   };
-    var hasLoadingMask = (jQuery().mask ? true : false);
 
-    // hook the event based on the version of bootstrap
-    obj.load('shown.bs.tab', hasLoadingMask);
+    obj.load(showEvent, hasLoadingMask);
 
     return obj;
 };
