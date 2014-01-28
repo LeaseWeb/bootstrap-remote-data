@@ -15,7 +15,7 @@ var hasLoadingMask = (jQuery().mask ? true : false),
     bootstrapVersion2 = (jQuery().typeahead ? true : false);
 
 // hook the event based on the version of bootstrap
-var showEvent = (bootstrapVersion2 ? 'show' : 'shown.bs.tab');
+var showEvent = (bootstrapVersion2 ? 'show' : 'show.bs.tab');
 
 var RemoteTabs = function() {
   var obj = {
